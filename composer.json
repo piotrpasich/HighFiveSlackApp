@@ -8,6 +8,7 @@
       "SymfonyStandard\\": "app/SymfonyStandard/"
     }
   },
+  "minimum-stability": "dev",
   "require": {
     "php": ">=5.3.9",
     "symfony/symfony": "2.7.*",
@@ -20,10 +21,10 @@
     "sensio/distribution-bundle": "~4.0",
     "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
     "incenteev/composer-parameter-handler": "~2.0",
-    "xteam/highfiveslackbundle": "dev-master",
-    "xteam/slackmessenger": "dev-master",
     "doctrine/doctrine-fixtures-bundle": "^2.2",
-    "szymach/c-pchart": "1.*"
+    "szymach/c-pchart": "1.*",
+    "xteam/highfiveslackbundle": "dev-master",
+    "xteam/slackmessengerbundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3"
@@ -65,11 +66,11 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/piotrpasich/HighFiveSlackBundle.git"
+      "url": "git@github.com:piotrpasich/HighFiveSlackBundle.git"
     },
     {
       "type": "git",
-      "url": "https://github.com/piotrpasich/SlackMessengerBundle.git"
+      "url": "git@github.com:piotrpasich/SlackMessengerBundle.git"
     }
   ]
 }
