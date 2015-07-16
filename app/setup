@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo apt-get update && apt-get install php5-gd -y
+#sudo apt-get update && apt-get install php5-gd -y
 
-composer install --prefer-source --no-interaction
+#composer install --prefer-source --no-interaction
