@@ -3,4 +3,4 @@
 sudo apt-get install php5-gd -y
 
 curl -sS https://getcomposer.org/installer | php
-./composer.phar install
+php ./composer.phar install --prefer-source --no-interaction
