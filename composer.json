@@ -62,15 +62,5 @@
     "incenteev-parameters": {
       "file": "app/config/parameters.yml"
     }
-  },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git@github.com:piotrpasich/HighFiveSlackBundle.git"
-    },
-    {
-      "type": "git",
-      "url": "git@github.com:piotrpasich/SlackMessengerBundle.git"
-    }
-  ]
+  }
 }
