@@ -2,5 +2,9 @@
 
 sudo apt-get update && apt-get install php5-gd -y
 
+sudo chmod 777 app/cache
+sudo chmod 777 app/logs
+
 curl -sS https://getcomposer.org/installer | php
-./composer.phar install --prefer-source --no-interaction
+./composer.phar install --no-interaction
+
