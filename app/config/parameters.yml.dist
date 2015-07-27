@@ -24,3 +24,7 @@ parameters:
     xteam.highfive.message: "High five heroes! |chart|"
     xteam.highfive.base_url: "http://localhost"
     xteam.highfive.publish_channel: "#general"
+
+    github.api.token: aksjdajsdhkjshdkhas
+
+    xteam.gitmetrics.organizations: ['x-team']

@@ -1,0 +1,38 @@
+XTeam\GitMetricsBundle\Entity\Activity:
+    type: entity
+    table: null
+    repositoryClass: XTeam\GitMetricsBundle\Entity\ActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: text
+        createdAt:
+            type: datetime
+        externalId:
+            type: bigint
+        type:
+            type: string
+            length: 255
+        public:
+            type: boolean
+    manyToOne:
+        owner:
+            targetEntity: Owner
+            inversedBy: activities
+            cascade: [persist]
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+        repository:
+            targetEntity: Repository
+            inversedBy: activities
+            cascade: [persist]
+            joinColumn:
+                name: repository_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

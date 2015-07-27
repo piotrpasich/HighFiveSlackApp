@@ -1,0 +1,7 @@
+
+x_team_git_metrics_chart:
+    path:      /gitmetrics/chart
+    defaults: { _controller: x_team_git_metrics.controller.chart:showAction }
+x_team_git_metrics_chart_period:
+    path:      /gitmetrics/chart/{period}
+    defaults: { _controller: x_team_git_metrics.controller.chart:showAction }

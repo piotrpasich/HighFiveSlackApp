@@ -1,0 +1,64 @@
+services:
+    x_team_git_metrics.github.client:
+        class: Github\Client
+
+    x_team_git_metrics.github.builder.event_pull_requests:
+        class: XTeam\GitMetricsBundle\Builder\GithubEventActivitiesBuilder
+        arguments:
+            - @x_team_git_metrics.matcher.chain
+
+    x_team_git_metrics.github.provider.activities:
+        class: XTeam\GitMetricsBundle\Provider\GithubActivitiesProvider
+        arguments:
+            - @x_team_git_metrics.github.client
+            - @x_team_git_metrics.github.builder.event_pull_requests
+            - %xteam.gitmetrics.organizations%
+            - %github.api.token%
+
+    x_team_git_metrics.github.importer.activities:
+        class: XTeam\GitMetricsBundle\Importer\ActivitiesImporter
+        arguments:
+            - @x_team_git_metrics.github.provider.activities
+            - @doctrine.orm.default_entity_manager
+
+    x_team_git_metrics.matcher.chain:
+        class: XTeam\GitMetricsBundle\Matcher\RepositoryMatcher
+
+    x_team_git_metrics.chart.activity_chart_drawer:
+        class: XTeam\GitMetricsBundle\Chart\ActivityChartDrawer
+
+    #repositories
+    x_team_git_metrics.repository.owner:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - XTeamGitMetricsBundle:Owner
+        tags:
+            - {name: x_team_git_metrics.matcher, alias: owner}
+
+    x_team_git_metrics.repository.repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - XTeamGitMetricsBundle:Repository
+        tags:
+            - {name: x_team_git_metrics.matcher, alias: repository}
+
+    x_team_git_metrics.repository.activity:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - XTeamGitMetricsBundle:Activity
+        tags:
+            - {name: x_team_git_metrics.matcher, alias: activity}
+
+    #controllers
+    x_team_git_metrics.controller.chart:
+       class: XTeam\GitMetricsBundle\Controller\ChartController
+       arguments:
+          - @x_team_git_metrics.chart.activity_chart_drawer
+          - @x_team_git_metrics.repository.activity
+

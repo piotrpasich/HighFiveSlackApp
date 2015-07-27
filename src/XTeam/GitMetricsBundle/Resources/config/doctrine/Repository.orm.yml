@@ -1,0 +1,20 @@
+XTeam\GitMetricsBundle\Entity\Repository:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        externalId:
+            type: bigint
+        name:
+            type: string
+            length: 255
+    oneToMany:
+        activities:
+            targetEntity: Activity
+            mappedBy: Owner
+    lifecycleCallbacks: {  }

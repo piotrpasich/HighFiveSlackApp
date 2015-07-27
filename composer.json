@@ -24,7 +24,8 @@
     "doctrine/doctrine-fixtures-bundle": "^2.2",
     "szymach/c-pchart": "1.*",
     "xteam/highfiveslackbundle": "dev-master",
-    "xteam/slackmessengerbundle": "dev-master"
+    "xteam/slackmessengerbundle": "dev-master",
+    "knplabs/github-api": "~1.4"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3"

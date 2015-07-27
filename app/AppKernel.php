@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new XTeam\SlackMessengerBundle\XTeamSlackMessengerBundle(),
             new XTeam\HighFiveSlackBundle\XTeamHighFiveSlackBundle(),
             new XTeam\SlackMessengerAppBundle\XTeamSlackMessengerAppBundle(),
+            new XTeam\GitMetricsBundle\XTeamGitMetricsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
