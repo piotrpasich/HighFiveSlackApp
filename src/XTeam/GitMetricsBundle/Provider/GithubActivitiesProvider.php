@@ -46,15 +46,16 @@ class GithubActivitiesProvider implements ActivitiesProviderInterface
     private function getActivitiesForOrganization($orgranization)
     {
         $activities = [];
-        $organization = $this->client->api('organization');
-        $members = $organization->members()->all($orgranization);
+
+        $members = $this->getAllPossibleMembers($orgranization);
 
         foreach ($members as $member) {
             $events = $this->client->api('user')->publicEvents($member['login']);
+            var_dump($events);die();
             foreach ($events as $event) {
                 try {
-                    if (null != ($pullRequest = $this->activityBuilder->getActivities($event))) {
-                        $activities[] = $pullRequest;
+                    if (null != ($activity = $this->activityBuilder->getActivities($event))) {
+                        $activities[] = $activity;
                     }
                 } catch (\Exception $e) {
                     //@TODO - log events
@@ -64,5 +65,27 @@ class GithubActivitiesProvider implements ActivitiesProviderInterface
         }
 
         return $activities;
+    }
+
+    private function getAllPossibleMembers($orgranization)
+    {
+        //organisation
+        $apiOrganizationObject = $this->client->api('organization');
+        $members = $this->processMembers($apiOrganizationObject->members()->all($orgranization));
+
+        //team
+        $teams = $this->client->api('teams')->all($orgranization);
+        foreach ($teams as $team) {
+            $members = array_merge($members, $this->processMembers($this->client->api('teams')->members($team['id'])));
+        }
+
+        return $members;
+    }
+
+    private function processMembers($members)
+    {
+        return array_combine( array_map(function ($member) {
+            return $member['login'];
+        }, $members), $members);
     }
 }

@@ -25,7 +25,7 @@ class ActivityChartDrawer
         }
 
         foreach ($myData->Data["Series"] as $SerieName => $serie) {
-            $myData->Data["Series"][$SerieName]["Max"] = array_sum($serie['Data']) - max($serie['Data']);
+            $myData->Data["Series"][$SerieName]["Max"] = $this->getMax($activities);
         }
 
         $myData->setAbscissa("Options");
@@ -50,5 +50,18 @@ class ActivityChartDrawer
         ]);
 
         return $chart;
+    }
+
+    private function getMax($activities)
+    {
+        $max = [];
+        foreach ($activities as $activity) {
+            if (!isset($max[$activity->getOwner()->getId()])) {
+                $max[$activity->getOwner()->getId()] = 0;
+            }
+            $max[$activity->getOwner()->getId()] += 1;
+        }
+
+        return max($max);
     }
 }

@@ -33,7 +33,6 @@ class ChartController extends Controller
 
     public function showAction(Request $request, $period = null)
     {
-//        phpinfo();die();
         $activities = $this->activitiesRepository->getStats(new Period($period, $request->attributes->all()));
         $chart = $this->chartDrawer->draw($activities);
 
