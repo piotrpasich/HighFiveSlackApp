@@ -58,6 +58,7 @@ class GithubEventActivitiesBuilder implements ActivityBuilderInterface
         $owner = new Owner();
         $owner->setExternalId($data['actor']['id']);
         $owner->setName($data['actor']['login']);
+        $owner->setFullName($data['actor']['login']);
 
         $this->repositoryMatcher->saveRecord('owner', $findBy, $owner);
 

@@ -49,7 +49,6 @@ class PChartAdapter
         return $newActivities;
     }
 
-
     protected function getAllTypes($activities)
     {
         $types = [];

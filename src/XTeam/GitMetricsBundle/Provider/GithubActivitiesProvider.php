@@ -51,7 +51,6 @@ class GithubActivitiesProvider implements ActivitiesProviderInterface
 
         foreach ($members as $member) {
             $events = $this->client->api('user')->publicEvents($member['login']);
-            var_dump($events);die();
             foreach ($events as $event) {
                 try {
                     if (null != ($activity = $this->activityBuilder->getActivities($event))) {

@@ -8,6 +8,9 @@ XTeam\GitMetricsBundle\Entity\Owner:
             generator:
                 strategy: AUTO
     fields:
+        fullName:
+            type: string
+            length: 255
         name:
             type: string
             length: 255

@@ -20,6 +20,8 @@ class Owner
      */
     private $name;
 
+    private $fullName;
+
     private $externalId;
 
     private $activities;
@@ -95,4 +97,21 @@ class Owner
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param mixed $fullName
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
 }
